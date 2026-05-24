@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Il Sinai 2024 a.C. — Analisi degli Eventi</title>
+<style>
+:root {
+  --bg:       #07080f;
+  --bg2:      #0b0d18;
+  --bg3:      #0f1120;
+  --gold:     #c8a84a;
+  --gold2:    #e8d090;
+  --blue:     #6aacda;
+  --green:    #6ace8a;
+  --red:      #da6a6a;
+  --amber:    #d4904a;
+  --muted:    #6a6050;
+  --text:     #c8bfa0;
+  --textdim:  #7a7260;
+  --border:   #1e1c14;
+}
+
+* { box-sizing:border-box; margin:0; padding:0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Palatino Linotype','Book Antiqua',Georgia,serif;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── Nav ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: #06070eee;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding: 0 20px;
+  height: 44px;
+  gap: 4px;
+}
+nav .logo {
+  font-size: 11px; letter-spacing:.2em; color: var(--gold); text-transform:uppercase;
+  margin-right: auto; white-space: nowrap;
+}
+.nav-btn {
+  font-size: 9.5px; letter-spacing:.1em; text-transform:uppercase;
+  padding: 5px 10px; border-radius: 3px; border: none;
+  background: transparent; color: var(--muted);
+  cursor: pointer; font-family: inherit;
+  transition: all .2s; white-space: nowrap;
+}
+.nav-btn.active, .nav-btn:hover { color: var(--gold); background: #ffffff08; }
+
+/* ── Main layout ── */
+.page { display:none; }
+.page.active { display:block; }
+
+/* ── Hero ── */
+.hero {
+  text-align:center;
+  padding: 48px 24px 36px;
+  background: radial-gradient(ellipse at center top, #12183a44 0%, transparent 70%);
+  border-bottom: 1px solid var(--border);
+}
+.hero .eyebrow { font-size:10px; letter-spacing:.35em; color:var(--blue); text-transform:uppercase; margin-bottom:8px; }
+.hero h1 { font-size:28px; color:var(--gold2); font-weight:normal; margin-bottom:6px; }
+.hero .sub { font-size:13px; color:var(--textdim); }
+
+/* ── Content ── */
+.content { max-width: 860px; margin: 0 auto; padding: 32px 24px 60px; }
+
+/* ── Timeline ── */
+.timeline { position:relative; padding-left: 32px; }
+.timeline::before {
+  content:''; position:absolute; left:9px; top:0; bottom:0;
+  width:1px; background: linear-gradient(to bottom, var(--gold)44, transparent);
+}
+.tl-item { position:relative; margin-bottom:36px; }
+.tl-dot {
+  position:absolute; left:-32px; top:4px;
+  width:18px; height:18px; border-radius:50%;
+  background: var(--bg2);
+  display:flex; align-items:center; justify-content:center;
+  font-size:9px;
+  border: 1px solid;
+}
+.tl-date {
+  font-size:9px; letter-spacing:.2em; text-transform:uppercase;
+  margin-bottom:4px;
+}
+.tl-title { font-size:15px; color:var(--gold2); margin-bottom:8px; }
+.tl-body  { font-size:12px; color:var(--textdim); }
+
+/* ── Cards ── */
+.card-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin: 20px 0; }
+@media(max-width:600px){ .card-grid{ grid-template-columns:1fr; } }
+.card {
+  background: var(--bg2); border:1px solid var(--border);
+  border-radius:4px; padding:14px;
+}
+.card .ch { font-size:11px; letter-spacing:.15em; text-transform:uppercase; margin-bottom:6px; }
+.card .cb { font-size:11.5px; color:var(--textdim); line-height:1.65; }
+.card .ct { font-size:9px; color:var(--muted); margin-top:8px; font-style:italic; }
+
+/* ── Compare table ── */
+.compare {
+  width:100%; border-collapse:collapse; font-size:11.5px; margin:20px 0;
+}
+.compare th {
+  padding:8px 12px; text-align:left; font-size:9px; letter-spacing:.15em;
+  text-transform:uppercase; border-bottom: 1px solid var(--border);
+  font-weight:normal;
+}
+.compare td {
+  padding:10px 12px; border-bottom:1px solid #12140e;
+  vertical-align:top; line-height:1.6;
+}
+.compare tr:last-child td { border-bottom:none; }
+.compare .c1 { color:var(--amber); }
+.compare .c2 { color:var(--textdim); }
+.compare .c3 { color:var(--green); font-size:9px; }
+.compare .row-head { font-size:10.5px; color:var(--text); font-style:italic; }
+.tag {
+  display:inline-block; font-size:8px; letter-spacing:.1em;
+  text-transform:uppercase; padding:2px 6px; border-radius:2px; margin-top:4px;
+}
+.tag-no  { background:#3a1010; color:#da7a7a; border:1px solid #da6a6a44; }
+.tag-par { background:#1a2a10; color:#7ada7a; border:1px solid #6ace8a44; }
+.tag-amb { background:#2a2010; color:#d4a04a; border:1px solid #d4904a44; }
+.tag-yes { background:#0e2a1e; color:#6ace8a; border:1px solid #6ace8a44; }
+
+/* ── Section titles ── */
+.sec-title {
+  font-size:9px; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--muted); border-bottom:1px solid var(--border);
+  padding-bottom:6px; margin: 32px 0 18px;
+}
+.sec-title:first-child { margin-top:0; }
+
+/* ── Blockquote ── */
+.bq {
+  border-left: 2px solid var(--gold);
+  padding: 10px 16px;
+  margin: 16px 0;
+  background: var(--bg3);
+  border-radius: 0 4px 4px 0;
+  font-size:12px; color:var(--textdim);
+  font-style:italic;
+}
+.bq .bq-src { font-size:9px; color:var(--muted); margin-top:6px; font-style:normal; letter-spacing:.05em; }
+
+/* ── Evidence boxes ── */
+.ev-box {
+  border: 1px solid var(--border);
+  border-radius:4px; overflow:hidden; margin: 14px 0;
+}
+.ev-head {
+  padding: 8px 14px;
+  display:flex; justify-content:space-between; align-items:center;
+  cursor:pointer; background:var(--bg2);
+}
+.ev-head .et { font-size:12px; color:var(--text); }
+.ev-head .eb { font-size:9px; letter-spacing:.1em; text-transform:uppercase; }
+.ev-body {
+  padding:12px 14px; font-size:11.5px; color:var(--textdim);
+  line-height:1.7; display:none; background:var(--bg3);
+  border-top:1px solid var(--border);
+}
+.ev-body.open { display:block; }
+
+/* ── Verdict grid ── */
+.verdict-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:20px 0; }
+@media(max-width:600px){ .verdict-grid{grid-template-columns:1fr;} }
+.vcard {
+  background:var(--bg2); border:1px solid var(--border);
+  border-radius:4px; padding:14px; text-align:center;
+}
+.vcard .vnum { font-size:28px; font-weight:normal; margin-bottom:4px; }
+.vcard .vlabel { font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+.vcard .vdesc { font-size:10.5px; color:var(--textdim); margin-top:8px; }
+
+p { margin-bottom: 12px; font-size:12.5px; }
+strong { color: var(--gold2); font-weight:normal; }
+em { color: var(--amber); font-style:normal; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Sinai · Analisi degli eventi · ~2024 a.C.</div>
+  <button class="nav-btn active" onclick="showPage('eventi')">Gli eventi</button>
+  <button class="nav-btn"       onclick="showPage('testi')">I testi antichi</button>
+  <button class="nav-btn"       onclick="showPage('evidenze')">Evidenze oggi</button>
+  <button class="nav-btn"       onclick="showPage('scienza')">Spiegazione scientifica</button>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 1 — GLI EVENTI
+═══════════════════════════════════════════════════════════ -->
+<div id="page-eventi" class="page active">
+<div class="hero">
+  <div class="eyebrow">Ricostruzione secondo Zecharia Sitchin · Earth Chronicles</div>
+  <h1>Cosa è accaduto nel 2024 a.C.</h1>
+  <div class="sub">La distruzione della base spaziale del Sinai e il crollo di Sumer — eventi collegati o coincidenza?</div>
+</div>
+
+<div class="content">
+
+  <div class="sec-title">Il contesto — La guerra degli dei</div>
+  <p>Secondo Sitchin, il conflitto che portò alla distruzione non fu militare nel senso umano del termine, ma una <strong>guerra di fazione tra le due stirpi Anunnaki</strong>: gli <em>Enliliti</em> (guidati da Enlil e il suo clan) e gli <em>Enkiiti</em> (guidati da Enki/Ea). Il Sinai era territorio <em>neutrale</em> — l'unico sito che garantiva contatto con Nibiru e che nessuna delle due fazioni avrebbe voluto vedere cadere in mani avverse.</p>
+  <p>Il catalizzatore fu <strong>Marduk</strong>, figlio primogenito di Enki, che nel corso di decenni aveva progressivamente conquistato Babilonia e reclamava il diritto di governare l'intera Terra. La sua mossa verso il Sinai — l'ultima leva strategica — costrinse gli Enliliti a una scelta disperata.</p>
+
+  <div class="sec-title">La timeline degli eventi (narrativa Sitchin)</div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:#7ab8e8;color:#7ab8e8">📡</div>
+      <div class="tl-date" style="color:#7ab8e8">~2100 a.C. — Fase preparatoria</div>
+      <div class="tl-title">Marduk consolida Babilonia</div>
+      <div class="tl-body">Marduk entra in Mesopotamia, defila il tempio di Nippur (residenza di Enlil) e si insedia a Babilonia. Dichiara l'era dell'Ariete — la sua Era astrologica — come segno che il diritto cosmico di regnare è giunto. Comincia a manovrare per il controllo del Sinai.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:#c8a45a;color:#c8a45a">⚖️</div>
+      <div class="tl-date" style="color:#c8a45a">~2048 a.C. — Il Consiglio degli Dei</div>
+      <div class="tl-title">Il voto sul destino del Sinai</div>
+      <div class="tl-body">L'assemblea degli Anunnaki si riunisce. Anu, il re di Nibiru, approva la distruzione del solo sito spaziale — ma ordina esplicitamente che né dei né umani vengano colpiti. L'obiettivo è esclusivamente privare Marduk della struttura. Ninurta (Ishum) e Nergal (Erra) vengono scelti come esecutori. L'Erra Epos descrive in dettaglio questo momento: fu Nergal a spingere per un'azione più vasta.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:#da6a6a;color:#da6a6a">💥</div>
+      <div class="tl-date" style="color:#da6a6a">2024 a.C. — Il colpo al Sinai</div>
+      <div class="tl-title">Ninurta (Ishum) distrugge la base spaziale</div>
+      <div class="tl-body">Ninurta punta verso il "Monte Supremo" — il picco che sovrastava la pista di lancio. L'Erra Epos: <em>"Ishum alzò la mano: il Monte fu distrutto... ciò che era innalzato verso Anu per il lancio fu fatto appassire, la sua faccia fu fatta svanire, il suo luogo fu reso desolato."</em> In un singolo colpo l'intera struttura — pista, sistemi di navigazione, torri di lancio — è obliterata. Il territorio rimane radioattivo per anni.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:#da6a6a;color:#da6a6a">🔥</div>
+      <div class="tl-date" style="color:#da6a6a">2024 a.C. — Il colpo alle Cinque Città</div>
+      <div class="tl-title">Nergal (Erra) distrugge Sodoma, Gomorra e le altre</div>
+      <div class="tl-body">Emulando Ninurta ma oltrepassando il mandato, Nergal attacca le cinque città della pianura del Giordano (Sodoma, Gomorra, Admah, Zeboim, Zoar) i cui re avevano sfidato l'ordine Anunnaki. La Bibbia lo descrive come "pioggia di zolfo e fuoco dal cielo". Lot, avvertito dagli angeli, fugge. La moglie si volta — e per Sitchin l'istantanea vaporizzazione della donna di fronte all'onda d'urto è il meccanismo del "sale".</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:#d4904a;color:#d4904a">💨</div>
+      <div class="tl-date" style="color:#d4904a">2024 a.C. — Conseguenza non prevista</div>
+      <div class="tl-title">Il "Vento Maligno" devasta Sumer</div>
+      <div class="tl-body">Le esplosioni generano un <em>"Evil Wind"</em> — una nube radioattiva portata dai venti dominanti verso est/nordest. Il testo delle Lamentazioni di Ur descrive una "tempesta venuta dall'ovest" che porta morte silenziosa: chi è nelle strade muore, chi si chiude in casa muore ugualmente. Le città di Sumer sono colpite una ad una. Stranamente, <strong>Babilonia è risparmiata</strong> — il vento la sfiora sul bordo settentrionale. Sitchin legge questo come conferma che era il "destino" di Marduk regnare.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:#6ace8a;color:#6ace8a">📜</div>
+      <div class="tl-date" style="color:#6ace8a">~2000 a.C. — Conseguenze storiche</div>
+      <div class="tl-title">Fine della civiltà sumerica</div>
+      <div class="tl-body">Ur III, l'ultimo grande impero sumerico, crolla nel 2004 a.C. Gli Elamiti da est occupano Ur — la Lamentazione di Ur piange la dea Ningal che supplica Enlil invano. Quasi il 75% degli insediamenti mesopotamici viene abbandonato. La lingua sumerica cessa di essere parlata. Il potere passa a Babilonia sotto Marduk — esattamente come "previsto" dai testi Anunnaki.</div>
+    </div>
+
+  </div><!-- /timeline -->
+
+  <div class="sec-title">Chi erano Ninurta e Nergal nella tradizione mesopotamica</div>
+  <div class="card-grid">
+    <div class="card">
+      <div class="ch" style="color:#7ab8e8">Ninurta / Ishum ("Il Bruciatore")</div>
+      <div class="cb">Dio della guerra e dell'agricoltura, figlio di Enlil. Nei testi vedici paralleli identificato con Indra. Comandante militare degli Enliliti. Nell'Erra Epos agisce come l'esecutore preciso e limitato — colpisce solo il bersaglio designato: il Sinai.</div>
+      <div class="ct">Fonti: Erra Epos, Lugale, Anzu Epic</div>
+    </div>
+    <div class="card">
+      <div class="ch" style="color:#da6a6a">Nergal / Erra ("L'Annichilatore")</div>
+      <div class="cb">Signore degli Inferi e della morte, fratellastro di Marduk, figlio di Enki. Contraddittoriamente schierato con gli Enliliti in questo episodio. È lui a oltrepassare il mandato colpendo le Cinque Città — e nell'Erra Epos cerca di scaricare su altri la responsabilità del disastro che ne consegue.</div>
+      <div class="ct">Fonti: Erra Epos, testi funerari mesopotamici</div>
+    </div>
+  </div>
+
+  <div class="sec-title">I "Sette Armi del Terrore"</div>
+  <p>L'Erra Epos descrive le armi usate in termini che Sitchin confronta con arsenali nucleari moderni:</p>
+  <div class="bq">
+    "Egli sollevò le Armi del Terrore, i Sette, che non conoscono pietà né grazia... portatori di morte che non risparmiano nessuno, i sette le cui caratteristiche non sono conosciute a nessuno in cielo o sulla Terra."
+    <div class="bq-src">— Erra Epos, tavola I · Traduzione secondo Sitchin, <em>The Wars of Gods and Men</em> cap. XIV</div>
+  </div>
+  <p>Sitchin nota che il numero <strong>sette armi</strong> ricorre in modo specifico e che la descrizione degli effetti — fiamma che acceca, calore che fonde la roccia, nube che porta morte silenziosa — corrisponde alle fasi di un'esplosione nucleare: lampo, onda d'urto termica, fallout.</p>
+
+</div>
+</div><!-- /page-eventi -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 2 — I TESTI ANTICHI
+═══════════════════════════════════════════════════════════ -->
+<div id="page-testi" class="page">
+<div class="hero">
+  <div class="eyebrow">Fonti cuneiformi e bibliche</div>
+  <h1>Cosa dicono i testi antichi</h1>
+  <div class="sub">Citazioni, contesto filologico e doppia lettura: mitologica vs. astronautica</div>
+</div>
+
+<div class="content">
+
+  <div class="sec-title">1 · Erra Epos (VIII sec. a.C. — originali più antichi)</div>
+  <div class="bq">
+    "Ishum verso il Monte Supremo puntò il suo corso. Ishum alzò la mano: il Monte fu distrutto. Ciò che era innalzato verso Anu per il lancio fu fatto appassire, la sua faccia fu fatta svanire, il suo luogo fu reso desolato."
+    <div class="bq-src">— Erra Epos, tavola IV · Lettura Sitchin: "Monte Supremo" = il picco che sovrasta la pista di lancio del Sinai</div>
+  </div>
+  <p><strong>Lettura accademica convenzionale:</strong> L'Erra Epos è un poema teologico-propagandistico babilonese (~800 a.C.) che giustifica le devastazioni del dio Erra attribuendole a un piano divino inevitabile. "Ishum" è la divinità del fuoco, Erra è la pestilenza. Il "Monte Supremo" è un riferimento mitico agli dèi celesti, non un luogo fisico.</p>
+  <p><strong>Nota filologica critica:</strong> Il termine shumero-accadico per "lancio verso Anu" è <em>ana Anum naqu</em> — usato nei testi astronomici per descrivere il moto delle stelle. Non implica necessariamente una struttura fisica di lancio.</p>
+
+  <div class="sec-title">2 · Lamentazioni di Ur / Lamento di Nippur (~2000 a.C.)</div>
+  <div class="bq">
+    "Il vento maligno, come una tempesta che affascina, non può essere contenuto. Attacca le mura della città e le divora completamente. All'orizzonte... davanti alla tempesta, calore arde. Il calore di mezzogiorno brucia con la tempesta che combatte furiosamente. I cocci bruciati fecero splendere la polvere — il popolo geme."
+    <div class="bq-src">— Lamento di Ur, Kirugu VII · Trad. ETCSL (Electronic Text Corpus of Sumerian Literature, Oxford)</div>
+  </div>
+  <p><strong>Lettura di Sitchin:</strong> La "tempesta venuta dall'ovest" è la nube radioattiva dal Sinai. Il "calore che brucia" è la radiazione termica. I "cocci che splendono" sono la vitrificazione da esplosione nucleare.</p>
+  <p><strong>Lettura accademica:</strong> La caduta di Ur III è ben documentata: invasione elamita guidata da Kindattu nel 2004 a.C. Il "vento di Enlil" è metafora standard del potere distruttivo divino — appare in tutti e cinque i lamenti mesopotamici, incluso quello di Nippur che non ha nulla a che fare con il Sinai. La tempesta "dall'ovest" indica geograficamente gli Amoriti invasori dalla Siria, non il Sinai.</p>
+
+  <div class="sec-title">3 · Genesi 18–19 (Bibbia ebraica)</div>
+  <div class="bq">
+    "Il Signore fece piovere su Sodoma e Gomorra zolfo e fuoco, proveniente dal Signore, dal cielo. E sovvertì quelle città e tutta la pianura, e tutti gli abitanti delle città, e quel che cresceva sul suolo... Abramo si alzò di mattina presto... e guardò verso Sodoma e Gomorra: ecco il fumo saliva dalla terra come il fumo di una fornace."
+    <div class="bq-src">— Genesi 19:24-28 · Re di Roma 1611 / CEI</div>
+  </div>
+  <p><strong>Lettura di Sitchin:</strong> "Zolfo e fuoco dal cielo" è la descrizione in linguaggio pre-scientifico di un ordigno termonucleare aereo. Il "fumo come da fornace" è la nube a fungo. La moglie di Lot "diventata statua di sale" è la vaporizzazione istantanea di fronte all'onda d'urto, rivolta verso l'epicentro.</p>
+  <p><strong>Lettura accademica:</strong> Il "sale" (מֶלַח, <em>melah</em>) in ebraico biblico è associato alla desolazione e all'infertilità, non alla composizione chimica. La "statua di sale" è un tropo letterario di avvertimento (non voltarsi). L'ubicazione di Sodoma e Gomorra resta dibattuta — le candidature principali sono Tall el-Hammam e Bab edh-Dhra sul Mar Morto.</p>
+
+  <div class="sec-title">4 · Testi ugaritici di Ras Shamra (El, Baal, Asherah)</div>
+  <div class="bq">
+    "Dove i due corpi d'acqua iniziano, vicino alla fessura dei due mari, là si trovano i monti di El e Asherah — il Monte degli dèi giovani, nelle vicinanze di Kadesh."
+    <div class="bq-src">— Testi ugaritici, ca. XIII sec. a.C. · Citazione secondo Sitchin, <em>The Stairway to Heaven</em></div>
+  </div>
+  <p>Sitchin identifica "dove i due corpi d'acqua iniziano" con la punta del Sinai — dove il Golfo di Suez e il Golfo di Aqaba divergono. I "due picchi" sarebbero il Monte Katherine e il Monte Musa (Sinai biblico). Accademicamente, questi testi descrivono la residenza mitica di El — un luogo mitico, non geograficamente localizzato con certezza.</p>
+
+  <div class="sec-title">Tabella sinottica delle fonti</div>
+  <table class="compare">
+    <tr>
+      <th style="color:var(--muted)">Testo</th>
+      <th style="color:var(--amber)">Elemento chiave</th>
+      <th style="color:var(--blue)">Lettura Sitchin</th>
+      <th style="color:var(--green)">Lettura convenzionale</th>
+    </tr>
+    <tr>
+      <td class="row-head">Erra Epos</td>
+      <td class="c1">"Armi del Terrore"<br>"Monte distrutto"</td>
+      <td class="c2">Armi nucleari; distruzione del sito di lancio</td>
+      <td style="color:var(--green);font-size:11px">Poema sulla pestilenza; metafora del potere divino</td>
+    </tr>
+    <tr>
+      <td class="row-head">Lamentazioni di Ur</td>
+      <td class="c1">"Vento maligno dall'ovest"</td>
+      <td class="c2">Fallout radioattivo dal Sinai portato dai venti</td>
+      <td style="color:var(--green);font-size:11px">Metafora dell'invasione elamita; tropo poetico standard</td>
+    </tr>
+    <tr>
+      <td class="row-head">Genesi 19</td>
+      <td class="c1">"Zolfo e fuoco dal cielo"</td>
+      <td class="c2">Ordigno termonucleare aereo; nube a fungo</td>
+      <td style="color:var(--green);font-size:11px">Catastrofe naturale (vulcanismo, gas del Mar Morto) o racconto mitologico</td>
+    </tr>
+    <tr>
+      <td class="row-head">Testi ugaritici</td>
+      <td class="c1">"Montagne di El, dove i due mari"</td>
+      <td class="c2">Punta del Sinai, marcatori del corridoio</td>
+      <td style="color:var(--green);font-size:11px">Sede mitica del pantheon cananeo; luogo cosmologico, non geografico</td>
+    </tr>
+    <tr>
+      <td class="row-head">Epic of Gilgamesh</td>
+      <td class="c1">"Foresta dei Cedri / Tilmun"</td>
+      <td class="c2">Zona di atterraggio (Baalbek) e base spaziale (Sinai)</td>
+      <td style="color:var(--green);font-size:11px">Racconto mitologico di viaggio eroico verso la "terra degli immortali"</td>
+    </tr>
+  </table>
+
+</div>
+</div><!-- /page-testi -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 3 — EVIDENZE OGGI
+═══════════════════════════════════════════════════════════ -->
+<div id="page-evidenze" class="page">
+<div class="hero">
+  <div class="eyebrow">Stato attuale · 4000 anni dopo</div>
+  <h1>Cosa ci aspetteremmo di trovare — e cosa c'è davvero</h1>
+  <div class="sub">Analisi sistematica delle evidenze fisiche attese, confrontate con i dati scientifici disponibili</div>
+</div>
+
+<div class="content">
+
+  <div class="verdict-grid">
+    <div class="vcard">
+      <div class="vnum" style="color:var(--red)">0</div>
+      <div class="vlabel">Evidenze confermate</div>
+      <div class="vdesc">Nessun marker fisico inequivocabile di un evento nucleare è stato trovato nel Sinai</div>
+    </div>
+    <div class="vcard">
+      <div class="vnum" style="color:var(--amber)">4</div>
+      <div class="vlabel">Anomalie ambigue</div>
+      <div class="vdesc">Fenomeni reali ma con spiegazione geologica/storica alternativa plausibile</div>
+    </div>
+    <div class="vcard">
+      <div class="vnum" style="color:var(--green)">2</div>
+      <div class="vlabel">Coincidenze geometriche</div>
+      <div class="vdesc">Punti matematicamente verificabili che Sitchin usa come prova della "griglia"</div>
+    </div>
+  </div>
+
+  <div class="sec-title">Evidenze attese — Analisi dettagliata</div>
+
+  <div class="ev-box">
+    <div class="ev-head" onclick="toggleEv(this)">
+      <span class="et">1 · Vitrificazione superficiale (roccia fusa)</span>
+      <span class="eb tag tag-no">non trovata</span>
+    </div>
+    <div class="ev-body">
+      <p><strong>Atteso:</strong> Un'esplosione nucleare superficiale o aerea a bassa quota lascia strati di roccia fusa/vetrificata (<em>trinitite</em> o analoghi). A Trinity, NM (1945), la sabbia fu fusa in un raggio di 300m. Una detonazione 4000 anni fa sull'altopiano calcareo avrebbe dovuto lasciare zolle di calcare fuso, facilmente riconoscibili anche oggi.</p>
+      <p><strong>Trovato:</strong> Nessuna vitrificazione di origine non vulcanica è stata documentata nel Sinai centrale da spedizioni geologiche o archeometallurgiche. Le uniche rocce vetrificanti trovate sono residui di forni di fusione del rame del periodo faraonico (Wadi Maghara, Bir Nasib) — artefatti metallurgici normali.</p>
+      <p><strong>Sitchin ribatte:</strong> Cita "tephra" (roccia vulcanica scura) trovata nell'El-Tih dove non esistono vulcani — possibile residuo di una detonazione. Non supportato da datazioni isotopiche pubblicate.</p>
+    </div>
+  </div>
+
+  <div class="ev-box">
+    <div class="ev-head" onclick="toggleEv(this)">
+      <span class="et">2 · Anomalia radioattiva artificiale</span>
+      <span class="eb tag tag-amb">ambigua</span>
+    </div>
+    <div class="ev-body">
+      <p><strong>Atteso:</strong> Anche dopo 4000 anni, isotopi a lunga vita come Cs-137, Sr-90, o rapporti anomali U-235/U-238 dovrebbero essere rilevabili in campioni di sedimenti profondi o ossa animali nell'area dell'El-Tih.</p>
+      <p><strong>Trovato:</strong> Studi di radioattività naturale nel Sinai (depositi di caolino dell'El-Tih, depositi di sabbia nera sul litorale nord) mostrano livelli elevati di uranio e torio — ma di <em>origine geologica naturale</em>, legati ai litotipi precambriani e mesozoici. Nessuno studio ha trovato firma isotopica artificiale. Sitchin cita "tracce di radiazione a sud del Mar Morto" — in parte reali ma attribuite ai minerali del Mar Morto (potassio-40, radio naturale).</p>
+      <p><strong>Nota:</strong> Un'esplosione nucleare del 2024 a.C. avrebbe lasciato livelli di Pu-239 (emivita 24.100 anni) ancora rilevabili oggi. Nessuno studio peer-reviewed riporta plutonio nel Sinai.</p>
+    </div>
+  </div>
+
+  <div class="ev-box">
+    <div class="ev-head" onclick="toggleEv(this)">
+      <span class="et">3 · Cratere o cavità centrale</span>
+      <span class="eb tag tag-amb">ambigua</span>
+    </div>
+    <div class="ev-body">
+      <p><strong>Atteso:</strong> Un'esplosione di superficie o sotterranea avrebbe creato un cratere misurabile. Sitchin cita "l'immensa cavità nel centro del Sinai" visibile dalle fotografie spaziali.</p>
+      <p><strong>Trovato:</strong> L'El-Tih ha effettivamente una depressione centrale — ma è una caratteristica tettonica documentata, formata da faille normali orientate N-S, NE e NW studiate da geofisici egiziani (dati Bouguer). L'anomalia gravitazionale centrale dell'El-Tih è interpretata come un dicco basaltico profondo o sollevamento del basamento. Nessun elemento morfologico incompatibile con la geologia normale.</p>
+    </div>
+  </div>
+
+  <div class="ev-box">
+    <div class="ev-head" onclick="toggleEv(this)">
+      <span class="et">4 · Inabitabilità prolungata della zona</span>
+      <span class="eb tag tag-par">parzialmente reale</span>
+    </div>
+    <div class="ev-body">
+      <p><strong>Atteso:</strong> I testi dicono che il Sinai rimase "maledetto" e interdetto per generazioni. La Bibbia mostra che anche Abramo evitava di attraversarlo. La zona dovrebbe mostrare una lacuna insediativa nel record archeologico.</p>
+      <p><strong>Trovato:</strong> L'El-Tih è effettivamente <em>praticamente disabitato</em> — anche oggi. Ma questo è spiegato dalla sua aridità naturale estrema: nessuna sorgente permanente, temperatura diurna fino a 45°C d'estate, -10°C d'inverno. Le spedizioni archeometallurgiche (2006-2008) documentano presenza umana faraonico-beduina solo nelle zone costiere e nelle valli del sud (Wadi Maghara, Serabit el-Khadim — miniere di turchese e rame). Il plateau centrale è sempre stato inabitato per ragioni strettamente ambientali.</p>
+    </div>
+  </div>
+
+  <div class="ev-box">
+    <div class="ev-head" onclick="toggleEv(this)">
+      <span class="et">5 · Strutture o fondamenta artificiali pre-storiche</span>
+      <span class="eb tag tag-no">non trovate</span>
+    </div>
+    <div class="ev-body">
+      <p><strong>Atteso:</strong> Una base spaziale funzionante per decine di migliaia di anni avrebbe lasciato fondamenta, materiali artificiali, metalli lavorati, o strutture sotterranee visibili con georadar o satellite.</p>
+      <p><strong>Trovato:</strong> Le ricerche archeologiche nel Sinai hanno mappato circa 1.200 siti — concentrati nel sud (intorno a Santa Caterina), nel nord (Via Maris, rotte del deserto), e nelle zone costiere. Nessun sito pre-faraonico anomalo è stato documentato nell'El-Tih centrale. Il plateau è stato sorvegliato militarmente (checkpoint egiziani post-1973) ma non esplorato sistematicamente in superficie.</p>
+      <p><strong>Lacuna importante:</strong> L'El-Tih non ha mai subito uno survey archelogico e geofisico sistematico di superficie. Non si può escludere ciò che non è stato cercato.</p>
+    </div>
+  </div>
+
+  <div class="ev-box">
+    <div class="ev-head" onclick="toggleEv(this)">
+      <span class="et">6 · La "zona bruciata" visibile dallo spazio (prova Sitchin)</span>
+      <span class="eb tag tag-amb">reinterpretata</span>
+    </div>
+    <div class="ev-body">
+      <p><strong>Sitchin cita:</strong> Fotografie NASA/Apollo degli anni '60-'70 che mostrano una zona di colore scuro/bruciato nel Sinai centrale, distinguibile dal resto della penisola dall'orbita.</p>
+      <p><strong>Spiegazione geologica:</strong> Il contrasto cromatico tra l'altopiano calcareo chiaro (El-Tih) e le zone di wadis più scuri (litologie argillose, depositi di manganese) è un fenomeno naturale documentato. L'immagine SRTM della NASA (2000) mostra chiaramente la diversità litologica del Sinai senza alcuna anomalia incompatibile con la geologia. Le immagini Landsat degli anni '70 mostrano una zona più scura — ma corrispondente alle aree di erosione e depositi quaternari, non a un cratere.</p>
+    </div>
+  </div>
+
+  <div class="ev-box">
+    <div class="ev-head" onclick="toggleEv(this)">
+      <span class="et">7 · Equidistanza Baalbek–Giza = Baalbek–Katherine (prova geometrica)</span>
+      <span class="eb tag tag-yes">geometricamente verificato</span>
+    </div>
+    <div class="ev-body">
+      <p><strong>Sitchin afferma:</strong> La distanza da Baalbek alla Grande Piramide di Giza è uguale alla distanza da Baalbek al Monte Katherine. Questo e altre misure formano una "griglia" di navigazione intenzionale.</p>
+      <p><strong>Verifica:</strong> Baalbek→Giza: ~440 km. Baalbek→Katherine: ~437 km. La differenza è ~3 km — inferiore all'1%. Matematicamente notevole. Tuttavia: con sei punti in una regione, le probabilità di trovare equidistanze casuali sono statisticamente significative. Non è stato fatto uno studio probabilistico formale su quante combinazioni casuali di punti nella stessa area produrrebbero coincidenze simili.</p>
+      <p>La coincidenza geometrica è <em>reale</em> — l'interpretazione (intenzionalità vs. casualità) è il punto irrisolto.</p>
+    </div>
+  </div>
+
+  <div class="ev-box">
+    <div class="ev-head" onclick="toggleEv(this)">
+      <span class="et">8 · Cosa c'è davvero oggi sull'El-Tih</span>
+      <span class="eb tag tag-par">documentato</span>
+    </div>
+    <div class="ev-body">
+      <p><strong>Realtà attuale dell'altopiano El-Tih:</strong></p>
+      <p>Una strada asfaltata (Route 40) attraversa il plateau da nord (Ismailia) a sud (Santa Caterina) — l'unica infrastruttura. Sitchin la fotografò come "prova della pista": un nastro rettilineo visibile dall'alto su un altopiano. Diversi <em>checkpoint militari egiziani</em> controllano l'accesso (zona di sicurezza post-Guerra del Sinai 1973). Pozzi beduini sporadici nelle valli. Fauna desertica: ibex nubiano, gazzelle, volpi. Zero presenza umana permanente nel plateau centrale.</p>
+      <p>Il paesaggio è quello di un deserto calcareo mesozoico — roccia bianco-giallastra, wadis ocra, cieli tersi. Nessun segno visibile di qualunque evento catastrofico recente (in termini geologici).</p>
+    </div>
+  </div>
+
+</div>
+</div><!-- /page-evidenze -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 4 — SPIEGAZIONE SCIENTIFICA
+═══════════════════════════════════════════════════════════ -->
+<div id="page-scienza" class="page">
+<div class="hero">
+  <div class="eyebrow">Paleoclimatologia · Archeologia · Storia</div>
+  <h1>La spiegazione scientifica degli stessi eventi</h1>
+  <div class="sub">Cosa dice la scienza sul crollo di Sumer intorno al 2000 a.C. — e perché coincide temporalmente con la narrativa Sitchin</div>
+</div>
+
+<div class="content">
+
+  <div class="sec-title">Il "4.2 Kiloyear Event" — La mega-siccità globale</div>
+  <p>La scienza ha un nome preciso per l'evento che distrusse Sumer: l'<strong>"Evento 4.2 ka BP"</strong> (4200 anni prima del presente, ovvero ~2200 a.C.) — uno degli episodi di aridificazione più severi dell'Olocene, così rilevante da essere adottato come <em>marcatore stratigrafico ufficiale</em> della nuova Età Meghalayiana nel 2018 dall'International Commission on Stratigraphy.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="ch" style="color:var(--blue)">Prove paleoclimatiche</div>
+      <div class="cb">Stalagmiti della Grotta di Gol-e-Zard (Iran), correttamente a valle dei venti sumerici, registrano un picco di polvere (aridità) preciso tra 2200 e 1900 a.C. Nuclei marini del Golfo di Oman confermano l'input di polvere mesopotamica. Livelli del Mar Morto e del Mar Rosso segnano evaporazione accelerata. Analisi polliniche: brusca desertificazione.</div>
+      <div class="ct">Carolin et al., PNAS 2019 · Weiss, Science 1993</div>
+    </div>
+    <div class="card">
+      <div class="ch" style="color:var(--red)">Impatto sull'insediamento</div>
+      <div class="cb">Archeologia di sorvolo: il 75% degli insediamenti mesopotamici viene abbandonato tra 2200 e 1900 a.C. Una "Muraglia degli Amoriti" lunga 180 km viene costruita attraverso la Mesopotamia per fermare le migrazioni nomadi verso sud, causate dallo spostamento delle popolazioni dal nord desertificato. Esattamente quello che i testi sumerici chiamano "orde dall'ovest e dall'est".</div>
+      <div class="ct">Weiss et al., 1993 · Ur III administrative tablets</div>
+    </div>
+  </div>
+
+  <div class="sec-title">Il crollo di Ur III: ricostruzione storica</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:#7ab8e8;color:#7ab8e8">🏛️</div>
+      <div class="tl-date" style="color:#7ab8e8">~2200 a.C.</div>
+      <div class="tl-title">Inizio della siccità prolungata</div>
+      <div class="tl-body">L'Evento 4.2 ka colpisce il Medio Oriente. Le rese agricole nel nord della Mesopotamia crollano. Ondate di migranti (Amoriti da ovest, Gutei da est, Elamiti da est-sudest) premono sulle frontiere dell'Impero Ur III. Ur costruisce muri difensivi e mantiene ancora un'amministrazione efficiente — ma le riserve di cibo si assottigliano.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:#d4904a;color:#d4904a">⚔️</div>
+      <div class="tl-date" style="color:#d4904a">2047–2004 a.C.</div>
+      <div class="tl-title">Progressiva disgregazione</div>
+      <div class="tl-body">Re Ibbi-Sin (ultimo re di Ur III) affronta disintegrazione dell'impero: province che dichiarano autonomia, comunicazioni interrotte, prezzi del grano che decuplicano (documentato in tavolette amministrative). Gli Elamiti stringono alleanze con re ribelli periferici e avanzano verso il cuore.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:#da6a6a;color:#da6a6a">🔥</div>
+      <div class="tl-date" style="color:#da6a6a">2004 a.C.</div>
+      <div class="tl-title">Kindattu di Shimashki saccheggia Ur</div>
+      <div class="tl-body">L'esercito elamita guidato da Kindattu abbatte le mura di Ur, saccheggia il tempio di Nanna, cattura Ibbi-Sin. La Lamentazione di Ur descrive questo evento come la "tempesta di Enlil" — un tropo poetico per indicare un disastro cosmico-divino inevitabile, non una tempesta meteorologica o radiologica.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:#6ace8a;color:#6ace8a">📜</div>
+      <div class="tl-date" style="color:#6ace8a">1900 a.C. — Rinascita</div>
+      <div class="tl-title">Le piogge tornano — e Babilonia emerge</div>
+      <div class="tl-body">Intorno al 1900 a.C., i dati paleoclimatici mostrano il ritorno delle precipitazioni normali. Gli insediamenti si ripopolano rapidamente. Babilonia, sotto Hammurabi (1792-1750 a.C.), emerge come potenza dominante — esattamente come narrato nei testi Anunnaki come "destino di Marduk". Sitchin legge questa coincidenza come conferma; la scienza la spiega con il termine della siccità.</div>
+    </div>
+  </div>
+
+  <div class="sec-title">La "Evil Wind" — Cosa era davvero</div>
+  <p>La spiegazione scientifica della "tempesta maligna" è <em>multicausale</em>, e curiosamente coerente con la descrizione testuale:</p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="ch" style="color:var(--amber)">Tempeste di sabbia catastrofiche</div>
+      <div class="cb">Durante l'Evento 4.2 ka, i dati mostrano tempeste di polvere di intensità straordinaria dalla Mesopotamia settentrionale verso sud. Una "tempesta di sabbia dall'ovest" che "porta morte silenziosa" potrebbe descrivere un haboob (tempesta di sabbia densa) che soffoca i raccolti, intossica il bestiame e costringe evacuazioni. Queste tempeste "non si vedono arrivare" dall'orizzonte come descritto nei testi.</div>
+    </div>
+    <div class="card">
+      <div class="ch" style="color:var(--amber)">Pandemia batterica / tossica</div>
+      <div class="cb">La siccità concentra gli agenti patogeni nelle falde idriche decrescenti. Alcune ricerche suggeriscono che la "morte silenziosa" nelle case — dove perfino chi si barrica muore — potrebbe descrivere un'epidemia (forse antrace, che sopravvive nel suolo secco) o avvelenamento da micotossine nei cereali stressati dalla siccità. La descrizione è compatibile con entrambe le ipotesi.</div>
+    </div>
+  </div>
+
+  <div class="sec-title">Tabella comparativa finale</div>
+  <table class="compare">
+    <tr>
+      <th style="color:var(--muted)">Fenomeno</th>
+      <th style="color:var(--amber)">Narrativa Sitchin</th>
+      <th style="color:var(--blue)">Spiegazione scientifica</th>
+      <th style="color:var(--muted)">Compatibilità</th>
+    </tr>
+    <tr>
+      <td class="row-head">Caduta improvvisa di Ur III (~2004 a.C.)</td>
+      <td class="c1">Fallout nucleare che devasta la popolazione</td>
+      <td class="c2">Siccità 4.2ka + invasione elamita di Kindattu</td>
+      <td><span class="tag tag-amb">entrambi datano ~2000 a.C.</span></td>
+    </tr>
+    <tr>
+      <td class="row-head">75% insediamenti abbandonati</td>
+      <td class="c1">Zona interdetta dalla radiazione per decenni</td>
+      <td class="c2">Migrazione per fallimento agricolo da siccità</td>
+      <td><span class="tag tag-amb">stesso effetto, cause diverse</span></td>
+    </tr>
+    <tr>
+      <td class="row-head">"Vento maligno dall'ovest"</td>
+      <td class="c1">Nube radioattiva dal Sinai</td>
+      <td class="c2">Tropo poetico standard per invasione/catastrofe</td>
+      <td><span class="tag tag-no">appare in tutti i lamenti, non solo Ur</span></td>
+    </tr>
+    <tr>
+      <td class="row-head">Babilonia risparmiata</td>
+      <td class="c1">Il "vento" la sfiora per destino di Marduk</td>
+      <td class="c2">Babilonia è al margine nord della siccità; Elamiti non la attaccano</td>
+      <td><span class="tag tag-par">coincidenza geografica reale</span></td>
+    </tr>
+    <tr>
+      <td class="row-head">Fine della lingua sumerica</td>
+      <td class="c1">Estinzione fisico-culturale da catastrofe nucleare</td>
+      <td class="c2">Sostituzione demografica da Amoriti semitofoni nel 1900 a.C.</td>
+      <td><span class="tag tag-no">processo graduale documentato</span></td>
+    </tr>
+    <tr>
+      <td class="row-head">Sinai "interdetto" nei testi biblici</td>
+      <td class="c1">Zona radioattiva post-esplosione</td>
+      <td class="c2">Deserto pericoloso per ragioni pratiche, zona di confine contesa</td>
+      <td><span class="tag tag-amb">entrambe spiegazioni valide nel testo</span></td>
+    </tr>
+    <tr>
+      <td class="row-head">Sodoma e Gomorra distrutte</td>
+      <td class="c1">Esplosione nucleare aerea</td>
+      <td class="c2">Terremoto + gas del Mar Morto (metano/bitume) / racconto mitologico</td>
+      <td><span class="tag tag-amb">sito candidato (Tall el-Hammam) mostra distruzione ~1650 a.C.</span></td>
+    </tr>
+  </table>
+
+  <div class="sec-title">La domanda finale</div>
+  <p>La coincidenza temporale tra la narrativa Sitchin (distruzione 2024 a.C.) e il crollo documentato di Ur III (~2004 a.C.) è reale — e lascia aperta una domanda irrisolvibile: <strong>i Sumeri descrissero una catastrofe naturale con linguaggio mitico-divino</strong> (come era normale per loro), oppure <strong>descrivono letteralmente qualcosa che accadde nel Sinai</strong> e che scatenò una serie di eventi?</p>
+  <p>La scienza non dispone di prove che escludano categoricamente un evento energetico anomalo nel Sinai ~2000 a.C. — semplicemente <em>non ha trovato evidenza positiva</em> di esso. Quello che la scienza sa con certezza è che un <em>sistema climatico già destabilizzato</em> dall'Evento 4.2 ka rese la Mesopotamia vulnerabile al punto che qualunque ulteriore shock — militare, epidemico o di altro tipo — avrebbe potuto provocare il collasso documentato.</p>
+  <p>Il Sinai centrale, l'El-Tih, rimane uno dei territori più inesplorati sistematicamente del Medio Oriente. La risposta definitiva non è ancora stata cercata nel posto giusto.</p>
+
+</div>
+</div><!-- /page-scienza -->
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function toggleEv(head) {
+  const body = head.nextElementSibling;
+  body.classList.toggle('open');
+}
+</script>
+</body>
+</html>
